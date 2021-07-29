@@ -1,5 +1,7 @@
 package com.example.linkedlistimplementation;
 
+import java.util.ArrayList;
+
 public class DoublyLinkedList<E> implements Deque<E> {
 
     /**
@@ -51,8 +53,9 @@ public class DoublyLinkedList<E> implements Deque<E> {
     private int size = 0;
 
     public DoublyLinkedList() {
-        header = new Node<>(null, null, trailer);
+        header = new Node<>(null, null, null);
         trailer = new Node<>(null, header, null);
+        header.setNext(trailer);
     }
 
     @Override
@@ -95,11 +98,17 @@ public class DoublyLinkedList<E> implements Deque<E> {
 
     @Override
     public E removeLast() {
+        if(isEmpty()){
+            return null;
+        }
         return remove(trailer.getPrev());
     }
 
     @Override
     public E removeFirst() {
+        if(isEmpty()){
+            return null;
+        }
         return remove(header.getNext());
     }
 
@@ -117,6 +126,16 @@ public class DoublyLinkedList<E> implements Deque<E> {
         successor.setPrev(predecessor);
         size--;
         return node.getElement();
+    }
+    public ArrayList<Node<E>> getArray(){
+        ArrayList<Node<E>> arrayList  = new ArrayList<>();
+        Node<E> iteratingNode = header.getNext();
+        while(iteratingNode != null){
+            arrayList.add(iteratingNode);
+            iteratingNode = iteratingNode.getNext();
+        }
+        return arrayList;
+
     }
     //------------------------------End of doubly linked list ------------------------------
 }
