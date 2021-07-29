@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    static int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         binding.addFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doublyLinkedList.addFirst("Person " + (doublyLinkedList.size() + 1));
+                doublyLinkedList.addFirst("Person " + (++counter));
                 adapter.notifyDataSetChanged();
             }
         });
         binding.addLast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doublyLinkedList.addLast("Person " + (doublyLinkedList.size() + 1));
+                doublyLinkedList.addLast("Person " + (++counter));
                 adapter.notifyDataSetChanged();
             }
         });
